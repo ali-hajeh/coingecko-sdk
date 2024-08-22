@@ -1,31 +1,40 @@
-name: Deploy to npm
+name: Publish npm package
 
 on:
   push:
     branches:
-      - main
+      - main # Set this to your default branch
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v2
 
-      - name: Set up Node.js
+      - name: Use Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
-          cache: 'npm'
+          node-version: 18.20 # Set this to the node version you want to use
+          registry-url: "https://registry.npmjs.org"
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Cache node modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
 
-      - name: Run script
-        run: npm run your-script-name
+      - name: Install Dependencies
+        run: npm install
 
-      - name: Deploy to npm
+      - name: Build package
+        run: npm run build
+
+      - name: Publish to npm
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
