@@ -12,6 +12,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Install Expect
+        run: sudo apt-get install -y expect
+
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
