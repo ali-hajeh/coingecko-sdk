@@ -1,0 +1,129 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.1",
+    "title": "CoinGecko API",
+    "license": {
+      "name": "MIT"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.coingecko.com/api/v3",
+      "description": "Public API server"
+    },
+    {
+      "url": "https://pro-api.coingecko.com/api/v3",
+      "description": "Pro API server"
+    }
+  ],
+  "paths": {
+    "/coins/list": {
+      "get": {
+        "summary": "List all coins",
+        "operationId": "fetchCoinList",
+        "tags": ["coins"],
+        "responses": {
+          "200": {
+            "description": "A list of all coins",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CoinList"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/coins/{id}": {
+      "get": {
+        "summary": "Get information for a specific coin",
+        "operationId": "fetchCoinInfo",
+        "tags": ["coins"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the coin to retrieve",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Information for the specified coin",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Coin"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Coin": {
+        "type": "object",
+        "required": ["id", "symbol", "name"],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "symbol": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "CoinList": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Coin"
+        }
+      },
+      "Error": {
+        "type": "object",
+        "required": ["code", "message"],
+        "properties": {
+          "code": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
