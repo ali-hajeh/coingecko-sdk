@@ -6,3 +6,4 @@ dist/
 upload/
 uploads/**/*.png
 .env
+.api
