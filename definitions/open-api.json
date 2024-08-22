@@ -9,12 +9,12 @@
   },
   "servers": [
     {
-      "url": "https://api.coingecko.com/api/v3",
-      "description": "Public API server"
-    },
-    {
       "url": "https://pro-api.coingecko.com/api/v3",
       "description": "Pro API server"
+    },
+    {
+      "url": "https://api.coingecko.com/api/v3",
+      "description": "Public API server"
     }
   ],
   "paths": {
@@ -89,6 +89,13 @@
     }
   },
   "components": {
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "x-cg-pro-api-key"
+      }
+    },
     "schemas": {
       "Coin": {
         "type": "object",
@@ -125,5 +132,10 @@
         }
       }
     }
-  }
+  },
+  "security": [
+    {
+      "ApiKeyAuth": []
+    }
+  ]
 }

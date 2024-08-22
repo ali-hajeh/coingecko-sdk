@@ -31,9 +31,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}-
 
-      - name: Install Dependencies
-        run: npm install
-
       - name: Build package
         run: npm run build
 
