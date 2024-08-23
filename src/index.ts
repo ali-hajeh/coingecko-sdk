@@ -1,12 +1,21 @@
 import { client } from "./client";
 
-export const getClient = ({
+export const initClient = ({
   accessKey,
-  pro = true,
+  pro = false,
 }: {
-  pro: boolean;
   accessKey?: string;
-}) => {
+  pro?: boolean;
+} & (
+  | {
+      pro?: undefined | false;
+      accessKey?: never;
+    }
+  | {
+      pro: true;
+      accessKey: string;
+    }
+) = {}) => {
   client.setConfig({
     baseUrl: pro
       ? "https://pro-api.coingecko.com/api/v3"
