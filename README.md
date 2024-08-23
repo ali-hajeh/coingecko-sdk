@@ -2,6 +2,68 @@
 
 This SDK provides a set of functions to interact with the CoinGecko API. It includes methods for fetching a list of coins, retrieving detailed information about specific coins, and more.
 
+Here's a simple README section that explains how to install a package using both npm and yarn:
+
+---
+
+## Installation
+
+To install this package, you can use either npm or Yarn as your package manager.
+
+### Using npm
+
+To install the package with npm, run the following command in your terminal:
+
+```bash
+npm install coingecko-sdk
+```
+
+### Using Yarn
+
+If you prefer to use Yarn, you can install the package with the following command:
+
+```bash
+yarn add coingecko-sdk
+```
+
+## Endpoints
+
+| Endpoint                          | Description                                                      |
+|-----------------------------------|------------------------------------------------------------------|
+| `/coins/list`                     | Fetches a list of all coins available on CoinGecko.              |
+| `/coins/{id}`                     | Fetches detailed information about a specific coin.              |
+| `/coins/{id}/market_chart`        | Fetches market data for a specific coin.                         |
+| `/coins/markets`                  | Fetches market data for multiple coins.                          |
+| `/simple/price`                   | Fetches the current price of one or more coins.                  |
+| `/coins/{id}/tickers`             | Fetches tickers for a specific coin.                             |
+| `/coins/{id}/history`             | Fetches historical data for a specific coin.                     |
+| `/coins/{id}/market_chart/range`  | Fetches market data for a specific coin within a date range.     |
+| `/coins/{id}/status_updates`      | Fetches status updates for a specific coin.                      |
+| `/coins/{id}/ohlc`                | Fetches OHLC (Open, High, Low, Close) data for a specific coin.  |
+| `/simple/token_price/{id}`        | Fetches the price of tokens by contract address.                 |
+| `/coins/categories`               | Fetches a list of categories supported by CoinGecko.             |
+| `/coins/{id}/contract/{contract}` | Fetches data for a coin by contract address.                     |
+| `/coins/{id}/market_chart/range`  | Fetches market data for a coin within a date range.              |
+| `/coins/{id}/status_updates`      | Fetches status updates for a specific coin.                      |
+| `/coins/{id}/ohlc`                | Fetches OHLC data for a specific coin.                           |
+| `/coins/{id}/tickers`             | Fetches tickers for a specific coin.                             |
+| `/coins/{id}/history`             | Fetches historical data for a specific coin.                     |
+| `/coins/{id}/market_chart`        | Fetches market data for a specific coin.                         |
+| `/coins/markets`                  | Fetches market data for multiple coins.                          |
+| `/simple/price`                   | Fetches the current price of one or more coins.                  |
+| `/simple/supported_vs_currencies` | Fetches all supported currencies on CoinGecko.                   |
+| `/coins/{id}/contract/{contract}` | Fetches data for a coin by contract address.                     |
+| `/coins/categories`               | Fetches a list of categories supported by CoinGecko.             |
+| `/coins/{id}/market_chart/range`  | Fetches market data for a coin within a date range.              |
+| `/coins/{id}/status_updates`      | Fetches status updates for a specific coin.                      |
+| `/coins/{id}/ohlc`                | Fetches OHLC data for a specific coin.                           |
+| `/coins/{id}/tickers`             | Fetches tickers for a specific coin.                             |
+| `/coins/{id}/history`             | Fetches historical data for a specific coin.                     |
+| `/coins/{id}/market_chart`        | Fetches market data for a specific coin.                         |
+| `/coins/markets`                  | Fetches market data for multiple coins.                          |
+| `/simple/price`                   | Fetches the current price of one or more coins.                  |
+| `/simple/supported_vs_currencies` | Fetches all supported currencies on CoinGecko.                   |
+
 ## Functions
 
 ### `fetchCoinList`
@@ -19,160 +81,6 @@ Fetches a list of all coins available on CoinGecko.
 #### Example
 
 ```javascript
-const coins = await coinGeckoClient.coins.list();
+const coins = await coinGeckoClient.coinsList();
 console.log(coins);
-```
-
-### `fetchCoinInfo`
-
-Retrieves information for a specific coin by its ID.
-
-- **Method**: `GET`
-- **Endpoint**: `/coins/{id}`
-
-#### Parameters
-
-- **id**: `string` - The ID of the coin.
-
-#### Returns
-
-- **Type**: `Promise<CoinGeckoCoin>`
-- **Description**: Returns a promise that resolves to detailed information about the specified coin.
-
-#### Example
-
-```javascript
-const coinInfo = await coinGeckoClient.coins.get("bitcoin");
-console.log(coinInfo);
-```
-
-### `fetchCoinMarketData`
-
-Retrieves market data for a specific coin.
-
-- **Method**: `GET`
-- **Endpoint**: `/coins/markets`
-
-#### Parameters
-
-- **id**: `string` - The ID of the coin.
-- **vs_currency**: `string` - The target currency.
-
-#### Returns
-
-- **Type**: `Promise<Partial<CoinGeckoMarketData>>`
-- **Description**: Returns a promise that resolves to the market data for the specified coin.
-
-#### Example
-
-```javascript
-const marketData = await coinGeckoClient.coins.markets("bitcoin", "usd");
-console.log(marketData);
-```
-
-### `fetchCoinHistoricalData`
-
-Retrieves historical data for a specific coin on a given date.
-
-- **Method**: `GET`
-- **Endpoint**: `/coins/{id}/history`
-
-#### Parameters
-
-- **id**: `string` - The ID of the coin.
-- **date**: `string` - The date in YYYY-MM-DD format.
-
-#### Returns
-
-- **Type**: `Promise<CoinGeckoHistoricalData>`
-- **Description**: Returns a promise that resolves to historical data for the specified coin on the given date.
-
-#### Example
-
-```javascript
-const historicalData = await coinGeckoClient.coins.history(
-  "bitcoin",
-  "2022-01-01"
-);
-console.log(historicalData);
-```
-
-### `fetchCoinMarketChart`
-
-Retrieves market chart data for a specific coin.
-
-- **Method**: `GET`
-- **Endpoint**: `/coins/{id}/market_chart`
-
-#### Parameters
-
-- **id**: `string` - The ID of the coin.
-- **vs_currency**: `string` - The target currency.
-- **days**: `number` - Number of days of data to fetch.
-
-#### Returns
-
-- **Type**: `Promise<CoinGeckoMarketChartData>`
-- **Description**: Returns a promise that resolves to market chart data for the specified coin.
-
-#### Example
-
-```javascript
-const marketChart = await coinGeckoClient.coins.marketChart(
-  "bitcoin",
-  "usd",
-  30
-);
-console.log(marketChart);
-```
-
-### `fetchCoinOHLC`
-
-Retrieves OHLC (Open, High, Low, Close) data for a specific coin.
-
-- **Method**: `GET`
-- **Endpoint**: `/coins/{id}/ohlc`
-
-#### Parameters
-
-- **id**: `string` - The ID of the coin.
-- **vs_currency**: `string` - The target currency.
-
-#### Returns
-
-- **Type**: `Promise<CoinGeckoOHLCData>`
-- **Description**: Returns a promise that resolves to OHLC data for the specified coin.
-
-#### Example
-
-```javascript
-const ohlcData = await coinGeckoClient.coins.ohlc("bitcoin", "usd");
-console.log(ohlcData);
-```
-
-### `fetchSupportedNetworks`
-
-Retrieves a list of all supported networks.
-
-- **Method**: `GET`
-- **Endpoint**: `/networks`
-
-#### Returns
-
-- **Type**: `Promise<Partial<NetworkInfo>[]>`
-- **Description**: Returns a promise that resolves to a list of supported networks.
-
-#### Example
-
-```javascript
-const networks = await coinGeckoClient.networks.list();
-console.log(networks);
-```
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-```
-
 ```
