@@ -1,21 +1,22 @@
-import coinGeckoApi from "./coingecko-sdk/index";
+import { client } from "./client";
 
-class CoinGeckoSdk {
-  public static initClient({
-    accessKey,
-    pro = true,
-  }: {
-    pro: boolean;
-    accessKey: string;
-  }) {
-    coinGeckoApi.auth(accessKey);
+export const getClient = ({
+  accessKey,
+  pro = true,
+}: {
+  pro: boolean;
+  accessKey?: string;
+}) => {
+  client.setConfig({
+    baseUrl: pro
+      ? "https://pro-api.coingecko.com/api/v3"
+      : "https://api.coingecko.com/api/v3",
+    headers: pro && {
+      "x-cg-pro-api-key": accessKey,
+    },
+  });
 
-    if (!pro) {
-      coinGeckoApi.server("https://api.coingecko.com/api/v3");
-    }
+  return client;
+};
 
-    return coinGeckoApi;
-  }
-}
-
-export default CoinGeckoSdk;
+export * from "./client";
