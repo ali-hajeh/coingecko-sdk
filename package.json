@@ -1,7 +1,7 @@
 {
   "name": "coingecko-sdk",
-  "version": "1.0.0",
-  "description": "Validating User Access Through Signature",
+  "version": "1.0.1",
+  "description": "An interface to interact with the CoinGecko API",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
