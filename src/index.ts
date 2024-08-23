@@ -1,4 +1,4 @@
-import coinGeckoApi from "@api/coingecko-sdk";
+import coinGeckoApi from "./coingecko-sdk/index";
 
 class CoinGeckoSdk {
   public static initClient({

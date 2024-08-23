@@ -10,6 +10,6 @@
     "module": "commonjs", // Set module system
     "resolveJsonModule": true
   },
-  "include": ["src/**/*"], // Include source files
+  "include": ["src/**/*", "src/coingecko-sdk"], // Include source files
   "exclude": ["node_modules", "dist"] // Exclude these directories from compilation
 }

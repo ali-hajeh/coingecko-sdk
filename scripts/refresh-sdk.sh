@@ -1,8 +1,5 @@
 echo "Rebuilding API..."
 
-echo "Cleaning up old API"
-rm -rf ./.api
-
 echo "Generating new API"
 ./scripts/expect-script.sh
 
@@ -13,15 +10,14 @@ if [ ! -d ./.api ]; then
     exit 1
 fi
 
-# check that ./api/apis/coingecko-sdk/package.lock exists before proceeding, otherwise go to the directory and run npm install
-if [ ! -f ./.api/apis/coingecko-sdk/package-lock.json ]; then
-    echo "Installing dependencies for API (For some reason, the package-lock.json file is missing)"
-    echo "Changing directory to ./.api/apis/coingecko-sdk"
-    cd ./.api/apis/coingecko-sdk
-    npm install
-    echo "Changing directory back to root"
-    cd ../../../
-fi
+# we are gonna move coingecko-sdk to ./src folder
+echo "Cleaning up old API"
+rm -rf ./src/coingecko-sdk
+echo "Moving API to ./src"
+mv ./.api/apis/coingecko-sdk ./src
+
+echo "Cleaning up .api folder"
+rm -rf ./.api
 
 echo "API generated successfully"
 

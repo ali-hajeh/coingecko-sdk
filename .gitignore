@@ -11,3 +11,4 @@ uploads/**/*.png
 merged_api.json
 api1.json
 api2.json
+src/coingecko-sdk

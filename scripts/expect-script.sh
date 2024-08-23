@@ -17,7 +17,7 @@ send "coingecko-sdk"
 send "\r"
 
 expect -re "OK to proceed with package installation?.*"
-send "y"
+send "n"
 send "\r"
 
 # End of interaction
