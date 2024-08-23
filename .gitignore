@@ -8,3 +8,6 @@ uploads/**/*.png
 .env
 .api
 /.api
+merged_api.json
+api1.json
+api2.json

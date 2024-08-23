@@ -8,7 +8,7 @@
   integrity sha512-96Z2IP3mYmF1Xg2cDm8f1gWGf/HUVedQ3FMifV4kG/PQ4yEP51xDtRAEfhVNt5f/uzpNkZHwWQuUcu6D6K+Ekw==
 
 "@api/coingecko-sdk@file:.api/apis/coingecko-sdk":
-  version "1.0.1"
+  version "3.1.0"
   resolved "file:.api/apis/coingecko-sdk"
   dependencies:
     api "^6.1.2"

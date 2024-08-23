@@ -1,7 +1,5 @@
 import coinGeckoApi from "@api/coingecko-sdk";
 
-// export default CoinGeckoSDK;
-
 class CoinGeckoSdk {
   public static initClient({
     accessKey,
