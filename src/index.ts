@@ -1,4 +1,4 @@
-import { client, coinsMarkets } from "./client";
+import { client } from "./client";
 
 export const initClient = ({
   accessKey,

@@ -2719,7 +2719,7 @@ export type SimplePriceData = {
 };
 
 export type SimplePriceResponse = ({
-    bitcoin?: SimplePrice;
+    [key: string]: SimplePrice;
 });
 
 export type SimplePriceError = unknown;
